@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Finder</title>
+</head>
+<body>
+    <h1>Enter a Website URL</h1>
+    
+    <form action="/" method="POST">
+        <input type="text" name="website_url" placeholder="Enter website URL">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if script_result %}
+        <h3>Script Tag Search Result:</h3>
+        <p>{{ script_result }}</p>
+    {% endif %}
+
+    {% if style_result %}
+        <h3>Style Tag Search Result:</h3>
+        <p>{{ style_result }}</p>
+    {% endif %}
+</body>
+</html>

@@ -9,6 +9,8 @@ class CodeFinder:
         self.soup = BeautifulSoup(self.html_content, "html.parser")
         #this line of code is used to extract/parse html code
         global codefound
+    def fetch_data(self):
+        return f"Processing URL: {self.url}"  # Replace with actual logic
 
     def fetch_html(self):
         "Fetch the HTML content of a webpage."
@@ -43,9 +45,9 @@ class CodeFinder:
 
 
 
-# Example Usage
-url = input("Enter URL:")
-searching = CodeFinder(url)
+# # Example Usage
+# url = input("Enter URL:")
+# searching = CodeFinder(url)
 
 
 search_text_script = "invitation.ashx"
