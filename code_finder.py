@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+found = False
 
 class CodeFinder:
     def __init__(self, url):
@@ -41,9 +42,11 @@ class CodeFinder:
             if script.has_attr("src") and search_text.lower() in script["src"].lower():
                 print("The client is using the code")
                 return "The client is using the code"
+                found = True
 
         # print(" '{search_text}' not found in <script> tags.")  # Debugging
         # return " '{search_text}' not found in <script> tags."
+        #return "Couldn't extract from the Website."
 
 
 
@@ -56,7 +59,13 @@ class CodeFinder:
         for style in style_tags:
             if style.string and search_text.lower() in style.string.lower():
                 return "The client is using the chat plugin"
+                found = True
 
         # print(" '{search_text}' not found in <style> tags.")  # Debugging
         # return " '{search_text}' not found in <style> tags."
 
+    if found == False:
+        print("Extraction Unsuccessfulll")
+        #return "URL Extraction Unsuccessfull"
+    else:
+        print("extraction succuessfull")

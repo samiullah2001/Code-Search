@@ -7,20 +7,21 @@ app = Flask(__name__)
 def home():
     if request.method == "POST":
         website_url = request.form.get("website_url")
-        print(f"🔹 Received URL: {website_url}")  # Debugging
+        # print("Received URL: {website_url}")  # Debugging
 
         if not website_url:
-            return render_template("index.html", script_result="❌ Please enter a valid URL.")
+            return render_template("index.html", script_result="Please enter a valid URL.")
 
-        finder = CodeFinder(website_url)
-        search_text_script = "invitation.ashx"
-        search_text_style = "#apexchat_prechat_invitation_wrapper"
+        finder = CodeFinder(website_url) 
+        #search parameters
+        search_text_script = "invitation.ashx" # for direct code
+        search_text_style = "#apexchat_prechat_invitation_wrapper" #for plugin
 
         script_result = finder.search_script_tags(search_text_script)
         style_result = finder.search_style_tags(search_text_style)
 
-        print(f"🔹 Script result: {script_result}")  # Debugging
-        print(f"🔹 Style result: {style_result}")  # Debugging
+        print(f"Script result: {script_result}")  # Debugging
+        print(f"Style result: {style_result}")  # Debugging
 
         return render_template("index.html", script_result=script_result, style_result=style_result)
 
