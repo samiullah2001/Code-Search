@@ -1,6 +1,11 @@
-#input_text{
-    text-align: center;
+*{
+    height: 100%;
+    width: 100%;
 }
-.input_text{
-    text-align: center;
+
+.myDiv {
+    align-content: center;
 }
+/* .input_text{
+    text-align: center;
+} */

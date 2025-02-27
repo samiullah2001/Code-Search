@@ -60,8 +60,12 @@ class CodeFinder:
         # print(" '{search_text}' not found in <style> tags.")  # Debugging
         # return " '{search_text}' not found in <style> tags."
 
-    if found == False:
-        print("Extraction Unsuccessfulll")
-        #return "URL Extraction Unsuccessfull"
-    else:
-        print("extraction succuessfull")
+    def if_found():
+        if found == False:
+            return "URL Extraction Unsuccessfull"
+        else:
+            print("extraction succuessfull")
+            return "extraction succuessfull"
+
+
+    
