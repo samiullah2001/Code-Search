@@ -18,10 +18,6 @@ class CodeFinder:
         try:
             response = requests.get(self.url, headers={"User-Agent": "Mozilla/5.0"})
             response.raise_for_status()
-            #the process of fetching/extracting HTML and scripts tags
-
-            # print("fetching HTML from: {self.url}") 
-            # print(response.text[:500])
             return response.text
         except requests.exceptions.RequestException as e:
             print(" Error fetching URL: {e}")
@@ -31,7 +27,7 @@ class CodeFinder:
 
     def search_script_tags(self, search_text):
         if not self.soup:
-            return "Couldnt extract params"
+            return "Couldnt extract params from the website"
 
         script_tags = self.soup.find_all("script")
 
