@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Finder</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="/static/style.css" -->
+
 </head>
 <body>
-    <h1>Enter a Website URL</h1>
     <div class="myDiv">
-        <p>hello</p>
-        <form action="/" method="POST">
-            <input type="text" name="website_url" placeholder="Enter website URL">
-            <button type="submit">Submit</button>
+        <h1>Enter the Website URL</h1>
+        <form action="/" method="POST" id="url_enter">
+            <input type="text" name="website_url" placeholder="Enter website URL" id="input_field">
+            <button type="submit" id="submit_button">Submit</button>
         </form>
+        
+
+        {% if script_result %}
+            <!-- <h3>Script Tag Search Result:</h3> -->
+            <h3>{{ script_result }}</h3>
+        {% endif %}
+
+        {% if style_result %}
+            <!-- <h3>Style Tag Search Result:</h3> -->
+            <h3>{{ style_result }}</h3>
+        {% endif %}
+    </div>
+    <div id="bottom">
+        <div id="footer">
+            <p> Developed by: Sami Ullah Siddiqui </p>
+        </div>
+
     </div>
 
-    {% if script_result %}
-        <h3>Script Tag Search Result:</h3>
-        <p>{{ script_result }}</p>
-    {% endif %}
-
-    {% if style_result %}
-        <h3>Style Tag Search Result:</h3>
-        <p>{{ style_result }}</p>
-    {% endif %}
-
-
-    <div id="footer">
-        <p> Developed by: Sami Ullah Siddiqui </p>
-    </div> 
 </body>
 </html>

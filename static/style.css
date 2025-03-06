@@ -1,0 +1,47 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background-image: url("../static/bgss.jpeg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+#myDiv {
+    align-content: center;
+    height: 50%;
+    width: 100%;
+    
+    
+}
+
+#input_field{
+    width: 400px;
+    height: 40px;
+    align-content: center;
+    
+    margin-top: 5%;
+}
+#submit_button {
+    margin-top: 3%;
+    height: 30px;
+    width: 200px;
+    align-content: center;
+    
+}
+#bottom {
+    height: 50%;
+    width: 100%;
+    
+}
+#footer{
+    background-color: rgb(63, 63, 138);
+    position: absolute;
+    bottom: 0%;
+    width: 25%;
+}
