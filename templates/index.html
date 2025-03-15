@@ -16,7 +16,7 @@
             <button type="submit" id="submit_button">Submit</button>
         </form>
         
-
+        <h2>Captured Requests for: {{ website_url }}</h2>
         {% if script_result %}
             <!-- <h3>Script Tag Search Result:</h3> -->
             <h3>{{ script_result }}</h3>
@@ -26,6 +26,25 @@
             <!-- <h3>Style Tag Search Result:</h3> -->
             <h3>{{ style_result }}</h3>
         {% endif %}
+
+        <div id="return_gtm">
+            
+            {% if requests %}
+            <ul>
+                {% for req in requests %}
+                <li>
+                    <strong>URL:</strong> {{ req.url }}<br>
+                    <strong>Query Params:</strong> {{ req.query_params }}<br>
+                    <strong>Post Data:</strong> {{ req.postData }}<br>
+                    <hr>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No requests found matching the search parameter.</p>
+            {% endif %}
+            
+        </div>
     </div>
     <div id="bottom">
         <div id="footer">

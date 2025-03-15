@@ -1,5 +1,10 @@
 from flask import Flask, render_template, request
 from code_finder import CodeFinder
+from  gtm_finder import capture_all_requests
+
+import asyncio
+import nest_asyncio
+nest_asyncio.apply()
 
 app = Flask(__name__)
 
@@ -10,10 +15,12 @@ def home():
 
         if not website_url:
             return render_template("index.html", script_result="Please enter a valid URL.")
+        
+         
 
         finder = CodeFinder(website_url)
 
-        #search parameters
+        # #search parameters
         search_text_script = "invitation.ashx" # for direct code
         search_text_style = "#apexchat_prechat_invitation_wrapper" #for plugin
 
@@ -23,7 +30,23 @@ def home():
         print(f"Script result: {script_result}")   
         print(f"Style result: {style_result}")   
 
-        return render_template("index.html", script_result=script_result, style_result=style_result)
+    # Run the asynchronous capture function
+        loop = asyncio.get_event_loop()
+        requests_data = loop.run_until_complete(capture_all_requests(website_url))
+        # Filter the requests where 'search_param' is found in the query parameters
+        filtered_requests = []
+        for req in requests_data:
+            if search_text_script in req["url"]:
+                filtered_requests.append({
+                    "url": req["url"],
+                    "query_params": req["query_params"],
+                    "postData": req["postData"]
+                })
+
+        return render_template("index.html", script_result=script_result, style_result=style_result, 
+                               requests=filtered_requests, website_url=website_url)
+        
+        
 
     return render_template("index.html")  #to Show the input form on GET request
 

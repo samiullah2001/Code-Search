@@ -59,6 +59,7 @@ class CodeFinder:
 
         # print(" '{search_text}' not found in <style> tags.")  # Debugging
         # return " '{search_text}' not found in <style> tags."
+    
 
     def if_found():
         if found == False:
