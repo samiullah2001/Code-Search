@@ -57,9 +57,7 @@ class CodeFinder:
                 return "The client is using the chat plugin"
                 found = True
 
-        # print(" '{search_text}' not found in <style> tags.")  # Debugging
-        # return " '{search_text}' not found in <style> tags."
-    
+        
 
     def if_found():
         if found == False:

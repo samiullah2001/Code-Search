@@ -43,7 +43,6 @@ def home():
         
         filtered_requests = []
         for req in requests_data:
-            # 'query_params' is a dict of {param_key: [value1, value2, ...]}
             if gtm in req["url"]:
                 filtered_requests.append({
                     "url": req["url"],
