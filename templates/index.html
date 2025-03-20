@@ -17,19 +17,17 @@
         </form>
         
         <h2>Captured Requests for: {{ website_url }}</h2>
+    
         {% if script_result %}
             <!-- <h3>Script Tag Search Result:</h3> -->
             <h3>{{ script_result }}</h3>
-        {% endif %}
-
-        {% if style_result %}
-            <!-- <h3>Style Tag Search Result:</h3> -->
-            <h3>{{ style_result }}</h3>
-        {% endif %}
-
-        <div id="return_gtm">
+            {% elif style_result %}
+                <!-- <h3>Style Tag Search Result:</h3> -->
+                <h3>{{ style_result }}</h3>
             
-            {% if requests %}
+          
+             
+            {% elif requests %}
             <ul>
                 {% for req in requests %}
                 <li>
@@ -40,11 +38,14 @@
                 </li>
                 {% endfor %}
             </ul>
-            {% else %}
+         {% else %}
             <p>No requests found matching the search parameter.</p>
-            {% endif %}
-            
-        </div>
+        {% endif %}
+   
+
+        <div id="return_gtm">   
+              <!-- <strong>URL:</strong> {{ stored_data }}<br> -->
+        </div> 
     </div>
     <div id="bottom">
         <div id="footer">

@@ -49,12 +49,6 @@ async def capture_all_requests(url):
 
         print(f"Captured requests: {captured_requests}")
         return captured_requests
-
-        # if not gtm_found:
-        #      return [{"error": "No GTM Parameters found"}] 
-        
-
-        # print(f"Captured requests: {captured_requests}")  # Log the final requests
         
 
 
