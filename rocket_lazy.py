@@ -3,10 +3,14 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
 def extract_urls_with_keyword(url, keyword):
+    
     try:
         # Fetch website HTML
         response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
         response.raise_for_status()
+
+        if response.status_code == 403:
+            return f"Error: Access forbidden (403) when trying to fetch {url}"
 
         # Parse HTML with BeautifulSoup
         soup = BeautifulSoup(response.text, "html.parser")
@@ -19,6 +23,7 @@ def extract_urls_with_keyword(url, keyword):
 
         for script in lazy_scripts:
             data_src = script.get("data-rocket-src", "")
+            # if data_src and keyword in data_src:  # **Check if keyword exists in URL**
             if data_src and keyword in data_src:  # **Check if keyword exists in URL**
                 parsed_url = urlparse(data_src)
                 query_params = parse_qs(parsed_url.query)
@@ -28,7 +33,10 @@ def extract_urls_with_keyword(url, keyword):
                     "query_params": query_params
                 })
 
+        
+
         return matching_urls if matching_urls else f"No URLs found containing '{keyword}'."
 
     except requests.RequestException as e:
         return f"Error fetching page: {e}"
+    
