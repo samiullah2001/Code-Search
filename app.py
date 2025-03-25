@@ -60,19 +60,7 @@ def home():
         rocket_results = extract_urls_with_keyword(website_url, keyword)
         
     #code for rocket lazy
-    # results_rocket = []
-    # if request.method == "POST":
-    #     website_url = request.form.get("website_url")
-    #     keyword = request.form.get("keyword", "invitation")
-
-    #     if website_url:
-    #         results_rocket = extract_urls_with_keyword(website_url, keyword)
-
-        # extracted_data = []
         gtms = "invitation"
-
-        # if request.method == "POST":
-        #     website_url = request.form.get("website_url")
             
         if website_url:
             extracted_data = extract_urls_with_keyword(website_url, gtms)
@@ -81,8 +69,8 @@ def home():
         stored_data = [{"url": item["full_url"], "params": item["query_params"]} for item in extracted_data if isinstance(extracted_data, list)]
            
 
-        return render_template("index.html", script_result=script_result, style_result=style_result, requests=filtered_requests, website_url=website_url, stored_data=stored_data, rocket_results=rocket_results) 
-        # extracted_data=extracted_data, stored_data=stored_data
+        return render_template("index.html", script_result=script_result, style_result=style_result, requests=filtered_requests, website_url=website_url, stored_data=stored_data) 
+       
             
 
     return render_template("index.html", requests=[])  #to Show the input form on GET request

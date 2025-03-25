@@ -17,6 +17,8 @@ class CodeFinder:
     def fetch_html(self):
         try:
             response = requests.get(self.url, headers={"User-Agent": "Mozilla/5.0"})
+            if response.status_code == 403:
+                return f"Error: Access forbidden (403) when trying to fetch"
             response.raise_for_status()
             return response.text
         except requests.exceptions.RequestException as e:

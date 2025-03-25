@@ -21,6 +21,9 @@
         {% if script_result %}
             <!-- <h3>Script Tag Search Result:</h3> -->
             <h3>{{ script_result }}</h3>
+            <script>
+                console.log(script_result)
+            </script>
             
             {% elif style_result %}
                 <!-- <h3>Style Tag Search Result:</h3> -->
@@ -28,7 +31,7 @@
             
           
              
-            {% elif requests %}
+        {% elif requests %}
             <ul>
                 {% for req in requests %}
                 <li>
@@ -39,23 +42,19 @@
                 </li>
                 {% endfor %}
             </ul>
-            {% elif rocket_results %}
-            <p>
-                <script>
-                    var rocketResults = JSON.parse('{{ rocket_results | tojson | safe }}');
-                    console.log(rocketResults);
-                </script>
-                {{ rocketResults }}
-            </p>
-            {% elif stored_data %}
+            
+        {% elif stored_data %}
+
             <h3> {{ stored_data }} </h3>
             <script>
                 var stored_data_console = JSON.parse('{{ stored_data | tojson | safe }}');
                 console.log(stored_data_console);
+                // console.log(stored_data)
             </script>
+
+           
             
-               
-         {% else %}
+        {% else %}
             <p>No requests found matching the search parameter.</p>
         {% endif %}
    
