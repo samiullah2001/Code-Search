@@ -13,20 +13,38 @@
         <h1>Enter the Website URL</h1>
         <form action="/" method="POST" id="url_enter">
             <input type="text" name="website_url" placeholder="Enter website URL" id="input_field">
+
+            <!-- Toggle Switch -->
+            <label class="switch">
+                <input type="checkbox" name="toggle" value="B">
+                <span class="slider round"></span>
+            </label>
+            <br>
+
             <button type="submit" id="submit_button">Submit</button>
+            
         </form>
-        
+        <br><br>
         <h2>Captured Requests for: {{ website_url }}</h2>
-    
+
+        <!-- {% if network_result %}
+            <h2>Results:</h2>
+            <ul>
+            {% for line in result %}
+                <li>{{ line }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
         {% if script_result %}
-            <!-- <h3>Script Tag Search Result:</h3> -->
+           
             <h3>{{ script_result }}</h3>
             <script>
                 console.log(script_result)
             </script>
             
             {% elif style_result %}
-                <!-- <h3>Style Tag Search Result:</h3> -->
+       
                 <h3>{{ style_result }}</h3>
             
           
@@ -49,20 +67,53 @@
             <script>
                 var stored_data_console = JSON.parse('{{ stored_data | tojson | safe }}');
                 console.log(stored_data_console);
-                // console.log(stored_data)
+             
             </script>
 
            
             
         {% else %}
             <p>No requests found matching the search parameter.</p>
+        {% endif %} -->
+
+        {% if resultB %}
+            <h3>Toggle Result:</h3>
+            <ul>
+                {% for line in resultB %}
+                  <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
         {% endif %}
-   
+
 
         <div id="return_gtm">   
-              <!-- <strong>URL:</strong> {{ stored_data }}<br> -->
+           
         </div> 
     </div>
+
+    <script>
+        const form = document.querySelector('form');
+        const toggle = document.getElementById('toggle');
+    
+        form.addEventListener('submit', function (e) {
+        
+            if (!toggle.checked) {
+                toggle.disabled = false; 
+            } else {
+                toggle.disabled = true; 
+            }
+        });
+    
+        toggle.addEventListener('change', function () {
+            if (toggle.checked) {
+                toggle.disabled = true; 
+            } else {
+                toggle.disabled = false; 
+            }
+        });
+    </script>
+    
+
     <div id="bottom">
         <div id="footer">
             <p> Developed by: Sami Ullah Siddiqui </p>
