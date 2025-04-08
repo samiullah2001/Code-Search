@@ -4,6 +4,7 @@ from playwright.async_api import async_playwright
 
 async def network_calls(url):
     output = []
+    found = False
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -11,6 +12,10 @@ async def network_calls(url):
         page = await context.new_page()
 
         async def handle_request_or_response(request=None, response=None):
+            nonlocal found
+            if found:
+                return
+
             if request:
                 url = request.url.lower()
                 if request.method == "GET" and "invitation" in url and "company" in url:
@@ -21,6 +26,10 @@ async def network_calls(url):
                         msg = f"\nFound 'invitation' and 'company' in URL: {request.url} \n"
                         company_msg = f"\nExtracted company value: {company_value[0]} \n"
                         output.extend([msg, company_msg])
+                        return output
+                        
+                        
+
 
             elif response:
                 try:
@@ -30,6 +39,9 @@ async def network_calls(url):
                         msg = f"\nFound 'invit' in response from: {response.url} \n"
 
                         output.append(msg)
+                        found = True
+                        return output
+                        
                 except Exception as e:
                     pass 
 
